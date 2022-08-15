@@ -7,12 +7,19 @@ public class ScoreManager : Singleton<ScoreManager>
     protected int coin = 0;
     protected int atkUG = 1;
     protected int playerLevel = 1;
+
+    protected int playerHP;
+
+    protected float playerTotalAtk;
+
+    protected float shieldCT;
+
     protected bool isLobby = false;
     protected bool isSoundOn = true;
     
     
     [Header("Stage")]
-    protected int stage = 1;
+    protected int Stage = 1;
     protected int bStage;
     // Start is called before the first frame update
 
@@ -45,6 +52,26 @@ public class ScoreManager : Singleton<ScoreManager>
     public static int GetBStage()
     {
        return GetInstance().bStage;
+    }
+
+    public static int GetStage()
+    {
+       return GetInstance().Stage;
+    }
+
+    public static float GetPlayerTotalAtk()
+    {
+        return GetInstance().playerTotalAtk;
+    }
+
+    public static float GetPlayerHP()
+    {
+        return GetInstance().playerHP;
+    }
+
+    public static float GetShieldCT()
+    {
+        return GetInstance().shieldCT;
     }
 
     public static bool GetIsLobby()
@@ -88,6 +115,28 @@ public class ScoreManager : Singleton<ScoreManager>
     public static void SetBStage(int _bStage)
     {
         GetInstance().bStage = _bStage;
+        //PlayerPrefs.SetInt("Level",GetInstance().bStage);
+        //PlayerPrefs.Save();
+    }
+
+    public static void SetPlayerTotalAtk(float _playerTotalAtk)
+    {
+        GetInstance().playerTotalAtk = _playerTotalAtk;
+    }
+
+    public static void SetPlayerHP(int _playerHP)
+    {
+        GetInstance().playerHP = _playerHP;
+    }
+
+    public static void SetShieldCT(float _shieldCT)
+    {
+        GetInstance().shieldCT = _shieldCT;
+    }
+
+    public static void SetStage(int _Stage)
+    {
+        GetInstance().Stage = _Stage;
         //PlayerPrefs.SetInt("Level",GetInstance().bStage);
         //PlayerPrefs.Save();
     }
