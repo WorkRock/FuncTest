@@ -12,7 +12,7 @@ public class ScoreManager : Singleton<ScoreManager>
     
     
     [Header("Stage")]
-    protected int stage = 1;
+    protected int Stage = 1;
     protected int bStage;
     // Start is called before the first frame update
 
@@ -46,6 +46,12 @@ public class ScoreManager : Singleton<ScoreManager>
     {
        return GetInstance().bStage;
     }
+
+    public static int GetStage()
+    {
+       return GetInstance().Stage;
+    }
+
 
     public static bool GetIsLobby()
     {
@@ -88,6 +94,13 @@ public class ScoreManager : Singleton<ScoreManager>
     public static void SetBStage(int _bStage)
     {
         GetInstance().bStage = _bStage;
+        //PlayerPrefs.SetInt("Level",GetInstance().bStage);
+        //PlayerPrefs.Save();
+    }
+
+    public static void SetStage(int _Stage)
+    {
+        GetInstance().Stage = _Stage;
         //PlayerPrefs.SetInt("Level",GetInstance().bStage);
         //PlayerPrefs.Save();
     }
