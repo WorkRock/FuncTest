@@ -44,8 +44,8 @@ public class Result : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stage = ScoreManager.GetStage();
-        
+        //stage = ScoreManager.GetStage();
+        stage = 10;
         bStageCal();
 
         BStage = ScoreManager.GetBStage();
@@ -63,16 +63,6 @@ public class Result : MonoBehaviour
         BestStage.text = BStage.ToString();
         GetExp.text = Player_GetExp_TotalExp.ToString();
         GetCoin.text = Player_GetCoin_TotalCoin.ToString();
-
-
-        int coin = ScoreManager.GetCoin();
-        int exp = ScoreManager.GetExp();
-        
-        coin += Player_GetCoin_TotalCoin;
-        exp += Player_GetExp_TotalExp;
-
-        ScoreManager.SetCoin(coin);
-        ScoreManager.SetExp(exp);
     }
 
     void totalGetExpCal(int _stage)
