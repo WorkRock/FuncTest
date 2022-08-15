@@ -56,6 +56,7 @@ public class LobbyManager : MonoBehaviour
     public int Player_Exp_Max;
 
     [Header("Player_Atk")]
+    public float Player_Atk_PlusUG;
     public int Player_Atk_TotalAtk;
     public int Player_Atk_nowAtk;
     [Space(10f)]
@@ -131,6 +132,11 @@ public class LobbyManager : MonoBehaviour
         UG_DMG_Total = UG_DMG_BasicDef;
         UG_CT_Total = UG_CT_BasicDef;
 
+        Player_Atk_PlusUG = Player_Atk_TotalAtk * UG_DMG_Total;
+        
+        ScoreManager.SetPlayerTotalAtk(Player_Atk_PlusUG);        
+        ScoreManager.SetPlayerHP(Player_HP_TotalHP);
+
         totalNeedCoinCal();
         totalExpCal();
         totalAtkCal();
@@ -155,7 +161,7 @@ public class LobbyManager : MonoBehaviour
         UG_CT.text = UG_CT_Total.ToString();
         UG_NeedCoin.text = UG_needCoin_Total.ToString();
 
-        Cal_DMG.text = (Player_Atk_TotalAtk * UG_DMG_Total).ToString();
+        Cal_DMG.text = Player_Atk_PlusUG.ToString();
 
         levelEdit();
         
@@ -192,7 +198,10 @@ public class LobbyManager : MonoBehaviour
             }
             
             totalHPCal();
-            totalAtkCal();   
+            totalAtkCal();
+
+            Player_Atk_PlusUG = Player_Atk_TotalAtk * UG_DMG_Total;
+            ScoreManager.SetPlayerTotalAtk(Player_Atk_PlusUG);
         }
     }
     
@@ -206,6 +215,8 @@ public class LobbyManager : MonoBehaviour
 
         Player_HP_TotalHP = PlayerHP_BasicDef +
         ScoreManager.totalIntFormula(playerLevel-1, PlayerHP_BasicPlus, PlayerHP_BasicCor, PlayerHP_EditDef, PlayerHP_EditPlus, PlayerHP_EditCor);
+
+        ScoreManager.SetPlayerHP(Player_HP_TotalHP);
 
         if(Player_HP_TotalHP >= Player_HP_Max)
             Player_HP_TotalHP = Player_HP_Max;
@@ -259,6 +270,9 @@ public class LobbyManager : MonoBehaviour
             totalUGDMGCal();
             totalUGCTCal();
 
+            Player_Atk_PlusUG = Player_Atk_TotalAtk * UG_DMG_Total;
+            ScoreManager.SetPlayerTotalAtk(Player_Atk_PlusUG);
+
             atkUG = ScoreManager.GetAtkUG();
         }
     }
@@ -301,6 +315,8 @@ public class LobbyManager : MonoBehaviour
 
         UG_CT_Total = UG_CT_BasicDef +
         ScoreManager.totalFloatFormula(atkUG, UG_CT_BasicPlus, UG_CT_BasicCor, UG_CT_EditDef, UG_CT_EditPlus, UG_CT_EditCor);
+
+        ScoreManager.SetShieldCT(UG_CT_Total);
 
         if(UG_CT_Total <= UG_CT_Max)
             UG_CT_Total = UG_CT_Max;
