@@ -2,102 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class IG_BtnManager : MonoBehaviour
 {
-    [Header ("Player")]
-    public Text Player_TotalHP_Text;
-    public Text Player_NowHP_Text;
-    public Text Player_HPBonus_Text;
-    public Text Player_ATK_Text;
-    public Text Player_ShieldCT_Text;
-    public Text Player_Level_Text;
-
-    [Space(5f)]
-    public int Player_TotalHP;
-    public int Player_NowHP;
-    public int Player_HPBonus;
-    public float Player_ATK;
-    public float Player_ShieldCT;
-    public int Player_Level;
-
-    [Space(10f)]
-    [Header ("Player_HP")]
-    public int Player_BasicDefaultHP;                  //기본_Default : 100
-    public int Player_BasicPlusHP;                     //기본_가중치 : 3
-
-    [Space(10f)]
-    public int Player_EditDefaultHP;                   //보정값_Default : 0
-    public int Player_EditPlusHP;                      //보정값_가중치 : 20
-
-    [Space(10f)]
-    public int Player_BasicCorLevel_HP;                //보정레벨_기본 : 1
-    public int Player_EditCorLevel_HP;                 //보정레벨_보정값 : 10
-
-    [Space(10f)]
-    public int Player_maxHP;                           //최댓값 : 2000
-
-    [Space(10f)]
-    [Header("Player_ATK")]
-    public float Player_BasicDefaultATK;               //기본_Default : 30
-    public float Player_BasicPlusATK;                  //기본_가중치 : 0
-
-    [Space(10f)]
-    public float Player_EditDefaultATK;                //보정값_Default : 0
-    public float Player_EditPlusATK;                   //보정값_가중치 : 15
-
-    [Space(10f)]
-    public int Player_BasicCorLevel_ATK;               //보정레벨_기본 : 1
-    public int Player_EditCorLevel_ATK;                //보정레벨_보정값 : 10
-
-    [Space(10f)]
-    public float Player_maxATK;                        //최댓값 : 500
-
-    [Space(10f)]
-    [Header("Player_UG")]
-    public float Player_UG;
-    public int Player_UG_Level;                        //공격력 업그레이드 레벨
-
-    [Space(10f)]
-    public float Player_BasicDefaultUG;                //기본_Default : 1
-    public float Player_BasicPlusUG;                   //기본_가중치 : 0.035
-
-    [Space(10f)]
-    public float Player_EditDefaultUG;                 //보정값_Default : 0
-    public float Player_EditPlusUG;                    //보정값_가중치 : 0.16
-
-    [Space(10f)]
-    public int Player_BasicCorLevel_UG;                //보정레벨_기본 : 1
-    public int Player_EditCorLevel_UG;                 //보정레벨_보정값 : 10
-
-    [Space(10f)]
-    public float Player_maxUG;                         //최댓값 : 3
-
-    [Space(10f)]
-    [Header("Player_ShieldCT")]
-    public float Player_BasicDefault_ShieldCT;          //기본_Default : 3
-    public float Player_BasicPlus_ShieldCT;             //기본_가중치 : 0
-
-    [Space(10f)]
-    public float Player_EditDefault_ShieldCT;           //보정값_Default : 0
-    public float Player_EditPlus_ShieldCT;              //보정값_가중치 : -0.5
-
-    [Space(10f)]
-    public int Player_BasicCorLevel_ShieldCT;           //보정레벨_기본 : 1
-    public int Player_EditCorLevel_ShieldCT;            //보정레벨_보정값 : 10
-
-    [Space(10f)]
-    public float Player_max_ShieldCT;                   //최댓값 : 1
-
-
     [Space(15f)]
     [Header("Dragon")]
     public Text Dragon_TotalHP_Text;
     public Text Dragon_NowHP_Text;
 
     [Space(5f)]
-    public int Dragon_TotalHP;
-    public int Dragon_NowHP;
+    public float Dragon_TotalHP;
+    public float Dragon_NowHP;
+
+    [Space(10f)]
+    public float Dragon_BasicDefault_HP;          //기본_Default : 100
+    public float Dragon_BasicPlus_HP;             //기본_가중치 : 15
+
+    [Space(10f)]
+    public float Dragon_EditDefault_HP;           //보정값_Default : 0
+    public float Dragon_EditPlus_HP;              //보정값_가중치 : 40
+
+    [Space(10f)]
+    public int Dragon_BasicCorStage_HP;           //보정스테이지_기본 : 1
+    public int Dragon_EditCorStage_HP;            //보정스테이지_보정값 : 10
+
+    [Space(10f)]
+    public float Dragon_max_HP;                   //최댓값 : 6000
 
     [Space(15f)]
     [Header("Com Obj")]
@@ -110,6 +41,54 @@ public class IG_BtnManager : MonoBehaviour
     public float ComObj_ATK;
     public float ComObj_Speed;
 
+    [Space(5f)]
+    [Header("Com Obj Speed")]
+    public float BasicDefault_ComObj_Speed;     //기본_Default : 5
+    public float BasicPlus_ComObj_Speed;        //기본_가중치 : 0
+
+    [Space(10f)]
+    public float EditDefault_ComObj_Speed;      //보정값_Default : 0
+    public float EditPlus_ComObj_Speed;         //보정값_가중치 : 1.5
+
+    [Space(10f)]
+    public int BasicCorStage_ComObj_Speed;      //보정스테이지_기본 : 1
+    public int EditCorStage_ComObj_Speed;       //보정스테이지_보정값 : 10
+
+    [Space(10f)]
+    public float max_ComObj_Speed;              //최대(or최소)값 : 15
+
+    [Space(5f)]
+    [Header("Com Obj ATK")]
+    public float BasicDefault_ComObj_ATK;     //기본_Default : 40
+    public float BasicPlus_ComObj_ATK;        //기본_가중치 : 2.5
+
+    [Space(10f)]
+    public float EditDefault_ComObj_ATK;      //보정값_Default : 0
+    public float EditPlus_ComObj_ATK;         //보정값_가중치 : 20
+
+    [Space(10f)]
+    public int BasicCorStage_ComObj_ATK;      //보정스테이지_기본 : 1
+    public int EditCorStage_ComObj_ATK;       //보정스테이지_보정값 : 10
+
+    [Space(10f)]
+    public float max_ComObj_ATK;              //최대(or최소)값 : 99999
+
+    [Space(5f)]
+    [Header("Com Obj Delay")]
+    public float BasicDefault_ComObj_Delay;     //기본_Default : 6
+    public float BasicPlus_ComObj_Delay;        //기본_가중치 : -0.1
+
+    [Space(10f)]
+    public float EditDefault_ComObj_Delay;      //보정값_Default : 0
+    public float EditPlus_ComObj_Delay;         //보정값_가중치 : -0.5
+
+    [Space(10f)]
+    public int BasicCorStage_ComObj_Delay;      //보정스테이지_기본 : 1
+    public int EditCorStage_ComObj_Delay;       //보정스테이지_보정값 : 10
+
+    [Space(10f)]
+    public float max_ComObj_Delay;              //최대(or최소)값 : 1
+
     [Space(15f)]
     [Header("Stage")]
     public Text Stage_Text;
@@ -117,43 +96,69 @@ public class IG_BtnManager : MonoBehaviour
 
     void Start()
     {
-        //Player_Level = ScoreManager.GetPlayerLevel();
-        // #1 플레이어 HP 계산
-        if (Player_Level == 1)
-            Player_TotalHP = Player_BasicDefaultHP;
-        else
-            Player_TotalHP = Player_BasicDefaultHP + ScoreManager.totalIntFormula(Player_Level-1, Player_BasicPlusHP, Player_BasicCorLevel_HP,
-            Player_EditDefaultHP, Player_EditPlusHP, Player_EditCorLevel_HP);
+        Stage = 1;
+        Stage_Text.text = $"Stage : {Stage}";
+        
 
-        // #1 현재 hp에 대입
-        Player_NowHP = Player_TotalHP;
+        // #4-1 드래곤 HP 초기화
+        Dragon_TotalHP = Dragon_BasicDefault_HP;
+        Dragon_NowHP = Dragon_TotalHP;
 
-        // #1 텍스트 출력
-        Player_TotalHP_Text.text = $"TotalHP : {Player_TotalHP}";
-        Player_NowHP_Text.text = $"NowHP : {Player_NowHP}";
+        Dragon_TotalHP_Text.text = $"TotalHp : {Dragon_TotalHP}";
+        Dragon_NowHP_Text.text = $"NowHp : {Dragon_TotalHP}";
 
-        // #2 플레이어 ATK 계산 (최종 공격력 = 공격력 + 업그레이드 공격력)
-        if (Player_Level == 1)
-            Player_ATK = Player_BasicDefaultATK;
-        else
-            Player_ATK = ScoreManager.totalFloatFormula(Player_Level - 1, Player_BasicPlusATK, Player_BasicCorLevel_ATK,
-                Player_EditDefaultATK, Player_EditPlusATK, Player_EditCorLevel_ATK) +
-                ScoreManager.totalFloatFormula(Player_Level - 1, Player_BasicPlusUG, Player_BasicCorLevel_UG,
-                Player_EditDefaultUG, Player_EditPlusUG, Player_EditCorLevel_UG);
-
-        // #2 텍스트 출력
-        Player_ATK_Text.text = $"ATK : {Player_ATK}";
-
-        // #3 플레이어 ShieldCT 계산
-        if (Player_Level == 1)
-            Player_ShieldCT = Player_BasicDefault_ShieldCT;
-        //else
-            //Player_ShieldCT = ScoreManager.totalFloatFormula(Player_UG_Level - 1, Player_BasicPlus_ShieldCT )
+        // #5 오브젝트 스피드, 공격력, 딜레이 초기화
+        ComObj_ATK = BasicDefault_ComObj_ATK;
+        ComObj_Speed = BasicDefault_ComObj_Speed;
+        ComObj_Delay = BasicDefault_ComObj_Delay;
     }
 
     void Update()
     {
-        
+       
+    }
+
+    public void Dragon_Hit()
+    {
+        //Dragon_NowHP -= Player_ATK;
+        Dragon_NowHP_Text.text = $"NowHP : {Dragon_NowHP}";
+
+        if(Dragon_NowHP <= 0)
+        {
+            Stage++;
+            Stage_Text.text = $"Stage : {Stage}";
+
+            // #4 드래곤 체력 증가
+            Dragon_TotalHP += ScoreManager.totalFloatFormula(Stage, Dragon_BasicPlus_HP, Dragon_BasicCorStage_HP,
+                Dragon_EditDefault_HP, Dragon_EditPlus_HP, Dragon_EditCorStage_HP);
+
+            Dragon_NowHP = Dragon_TotalHP;
+
+            //텍스트 변경
+            Dragon_TotalHP_Text.text = $"TotalHp : {Dragon_TotalHP}";
+            Dragon_NowHP_Text.text = $"NowHp : {Dragon_NowHP}";
+
+            // # 5 오브젝트 공격력, 스피드, 딜레이 증감
+            ComObj_ATK += ScoreManager.totalFloatFormula(Stage, BasicPlus_ComObj_ATK, BasicCorStage_ComObj_ATK,
+                EditDefault_ComObj_ATK, EditPlus_ComObj_ATK, EditCorStage_ComObj_ATK);
+
+            ComObj_Speed += ScoreManager.totalFloatFormula(Stage, BasicPlus_ComObj_Speed, BasicCorStage_ComObj_Speed,
+                EditDefault_ComObj_Speed, EditPlus_ComObj_Speed, EditCorStage_ComObj_Speed);
+
+            ComObj_Delay += ScoreManager.totalFloatFormula(Stage, BasicPlus_ComObj_Delay, BasicCorStage_ComObj_Delay,
+                EditDefault_ComObj_Delay, EditPlus_ComObj_Delay, EditCorStage_ComObj_Delay);
+
+        }
+    }
+
+    public void Player_Hit()
+    {/*
+        Player_NowHP -= ComObj_ATK;
+        Player_NowHP_Text.text = $"NowHp : {Player_NowHP}";
+
+        if (Player_NowHP <= 0)
+            SceneManager.LoadScene("Result");
+        */
     }
 
 }
