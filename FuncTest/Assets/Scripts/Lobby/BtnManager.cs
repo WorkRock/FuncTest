@@ -1,29 +1,26 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BtnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ExpPlus()
     {
-        
+        int Exp = ScoreManager.GetExp();
+        Exp += 1000;
+        ScoreManager.SetExp(Exp);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CoinPlus()
     {
-        
+        int Coin = ScoreManager.GetCoin();
+        Coin += 10000;
+        ScoreManager.SetCoin(Coin);
     }
 
-    void LevelPlus()
+    public void goIngame()
     {
-        int playerLevel = ScoreManager.GetPlayerLevel();
-        playerLevel++;
-        ScoreManager.SetPlayerLevel(playerLevel);
+        SceneManager.LoadScene("Ingame");
     }
 
-
-    void ExpPlus()
-    {
-
-    }
+   
 }
