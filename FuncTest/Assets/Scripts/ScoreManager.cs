@@ -102,24 +102,24 @@ public class ScoreManager : Singleton<ScoreManager>
         GetInstance().isSoundOn = _isSoundOn;
     }
 
-    public int totalIntFormula(int nowStageLv, int BasicPlus, int BasicCor,
+    public static int totalIntFormula(int nowStageLv, int BasicPlus, int BasicCor,
     int EditDef, int EditPlus, int EditCor)
     {        
         int cal;
 
-        cal = (Mathf.FloorToInt(nowStageLv - 1 / (float)BasicCor)) * BasicPlus
-        + (Mathf.FloorToInt(nowStageLv - 1 / (float)EditCor)) * EditPlus;
+       cal = (nowStageLv / BasicCor) * BasicPlus
+        + (nowStageLv/ EditCor) * EditPlus;
 
         return cal;
     }
 
-    public float totalFloatFormula(int nowStageLv, float BasicPlus, int BasicCor,
+    public static float totalFloatFormula(int nowStageLv, float BasicPlus, int BasicCor,
     float EditDef, float EditPlus, int EditCor)
     {
         float cal = 0;
 
-        cal = (Mathf.FloorToInt(nowStageLv - 1 / (float)BasicCor)) * BasicPlus
-        + (Mathf.FloorToInt(nowStageLv - 1 / (float)EditCor)) * EditPlus;
+        cal = (nowStageLv / BasicCor) * BasicPlus
+        + (nowStageLv/ EditCor) * EditPlus;
 
         return cal;
     }

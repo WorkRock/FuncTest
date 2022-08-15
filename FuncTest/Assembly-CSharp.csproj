@@ -36,6 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Lobby\BtnManager.cs" />
+     <Compile Include="Assets\Scripts\Lobby\LobbyManager.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Singleton.cs" />
     <Reference Include="UnityEngine">
